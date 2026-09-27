@@ -1,0 +1,10 @@
+@startuml sinlgeton
+
+class DatabaseConnection {
+    - instance : DatabaseConnection
+    - DatabaseConnection()
+    + getInstance() : DatabaseConnection
+    + executeQuery(query : String) : void
+}
+
+@enduml
