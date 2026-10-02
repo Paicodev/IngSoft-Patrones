@@ -15,6 +15,15 @@ Adapter introduce una clase intermediaria que implementa la interfaz esperada po
 
 Así se puede reutilizar la impresora antigua sin cambiar su clase ni acoplar el cliente a ella.
 
+## Ejecutar la demostración
+
+Desde la raíz del repositorio:
+
+```sh
+javac Code/adapter/adapter.java
+java -cp Code/adapter adapter
+```
+
 ## Consecuencias de usar Adapter
 
 **Ventajas**

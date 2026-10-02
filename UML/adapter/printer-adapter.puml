@@ -2,20 +2,20 @@
 skinparam classAttributeIconSize 0
 
 interface Printer {
-  +print(message: string): void
+  +print(message: String): void
 }
 
 class LegacyPrinter {
-  +printDocument(document: string): void
+  +printDocument(document: String): void
 }
 
 class PrinterAdapter {
   -legacyPrinter: LegacyPrinter
-  +print(message: string): void
+  +print(message: String): void
 }
 
 class Client {
-  +printMessage(printer: Printer, message: string): void
+  +printMessage(printer: Printer, message: String): void
 }
 
 Printer <|.. PrinterAdapter
