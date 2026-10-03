@@ -1,0 +1,35 @@
+@startuml Observer_Boton
+
+title Patrón Observer - Botón con eventos
+
+class Boton {
+    - observadores: List<ObservadorBoton>
+    + agregarObservador(o: ObservadorBoton): void
+    + quitarObservador(o: ObservadorBoton): void
+    + notificar(): void
+    + click(): void
+}
+
+interface ObservadorBoton {
+    + actualizar(): void
+}
+
+class GuardarObservador {
+    + actualizar(): void
+}
+
+class SonidoObservador {
+    + actualizar(): void
+}
+
+class RegistroObservador {
+    + actualizar(): void
+}
+
+ObservadorBoton <|.. GuardarObservador
+ObservadorBoton <|.. SonidoObservador
+ObservadorBoton <|.. RegistroObservador
+
+Boton "1" o-- "*" ObservadorBoton : notifica >
+
+@enduml
