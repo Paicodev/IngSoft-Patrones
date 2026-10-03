@@ -1,0 +1,24 @@
+@startuml
+
+class Editor {
+    - contenido : String
+    + escribir(texto : String) : void
+    + guardar() : Memento
+    + restaurar(memento : Memento) : void
+}
+
+class Memento {
+    - contenido : String
+    + obtenerContenido() : String
+}
+
+class Historial {
+    - estados : List<Memento>
+    + guardar(memento : Memento) : void
+    + obtenerAnterior() : Memento
+}
+
+Editor --> Memento : crea/restaura
+Historial "1" o-- "*" Memento : almacena
+
+@enduml

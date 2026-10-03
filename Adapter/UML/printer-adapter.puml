@@ -1,0 +1,24 @@
+@startuml
+skinparam classAttributeIconSize 0
+
+interface Printer {
+  +print(message: String): void
+}
+
+class LegacyPrinter {
+  +printDocument(document: String): void
+}
+
+class PrinterAdapter {
+  -legacyPrinter: LegacyPrinter
+  +print(message: String): void
+}
+
+class Client {
+  +printMessage(printer: Printer, message: String): void
+}
+
+Printer <|.. PrinterAdapter
+PrinterAdapter o--> LegacyPrinter : adapts
+Client ..> Printer : uses
+@enduml
