@@ -1,2 +1,0 @@
-# IngSoft-Patrones
-
