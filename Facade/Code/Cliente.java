@@ -6,6 +6,6 @@ public class Cliente {
         CompraFacade compra = new CompraFacade();
 
         // Realizar una compra
-        compra.realizarCompra("Matrix", 2500);
+        compra.realizarCompra("Amor de medianoche", 2500);
     }
 }
