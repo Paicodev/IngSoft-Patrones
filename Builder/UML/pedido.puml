@@ -1,0 +1,57 @@
+@startuml
+skinparam classAttributeIconSize 0
+
+class Cliente {
+}
+
+class Mesero {
+  - builder: PedidoBuilder
+  + setBuilder(builder: PedidoBuilder): void
+  + construirPedido(): void
+}
+note left of Mesero: Director:\nOrquesta los pasos de\nconstrucción del constructor.
+
+interface PedidoBuilder {
+  + buildPlatoPrincipal(): void
+  + buildBebida(): void
+  + buildPostre(): void
+  + getPedido(): Pedido
+}
+note right of PedidoBuilder: Constructor:\nInterfaz genérica.
+
+class MenuInfantilBuilder {
+  - pedido: Pedido
+  + buildPlatoPrincipal(): void
+  + buildBebida(): void
+  + buildPostre(): void
+  + getPedido(): Pedido
+}
+note bottom of MenuInfantilBuilder: Constructor específico:\nCrea las partes y\nmantiene el objeto.
+
+class MenuEjecutivoBuilder {
+  - pedido: Pedido
+  + buildPlatoPrincipal(): void
+  + buildBebida(): void
+  + buildPostre(): void
+  + getPedido(): Pedido
+}
+
+class Pedido {
+  - platoPrincipal: String
+  - bebida: String
+  - postre: String
+  + setPlatoPrincipal(plato: String): void
+  + setBebida(bebida: String): void
+  + setPostre(postre: String): void
+  + mostrarPedido(): void
+}
+note right of Pedido: Producto:\nEl objeto complejo resultante.
+
+Cliente -> Mesero
+Mesero o-> PedidoBuilder
+PedidoBuilder <|.. MenuInfantilBuilder
+PedidoBuilder <|.. MenuEjecutivoBuilder
+MenuInfantilBuilder ..> Pedido
+MenuEjecutivoBuilder ..> Pedido
+
+@enduml
