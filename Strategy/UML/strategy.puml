@@ -1,0 +1,27 @@
+@startuml Strategy
+
+class Carrito {
+    - estrategia : EstrategiaPago
+    + setEstrategia(estrategia : EstrategiaPago) : void
+    + pagar(monto : int) : void
+}
+
+interface EstrategiaPago {
+    + pagar(monto : int) : void
+}
+
+class PagoTarjeta {
+    - numero : String
+    + pagar(monto : int) : void
+}
+
+class PagoPayPal {
+    - email : String
+    + pagar(monto : int) : void
+}
+
+EstrategiaPago <|.. PagoTarjeta
+EstrategiaPago <|.. PagoPayPal
+Carrito o--> "1" EstrategiaPago : usa
+
+@enduml
