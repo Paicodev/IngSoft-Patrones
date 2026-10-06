@@ -1,4 +1,4 @@
-// Pruebas simples sin librerías externas: si algo falla, lanza una excepción.
+
 public class PruebasPedido {
     private static void verificar(boolean condicion, String mensaje) {
         if (!condicion) throw new AssertionError("FALLO: " + mensaje);

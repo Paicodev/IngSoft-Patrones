@@ -1,11 +1,9 @@
-
-
 // El Código Cliente
 // Usa el Pedido sin saber nada de los estados concretos.
 public class ClientePedidos {
     public static void main(String[] args) {
         System.out.println("=== Caso 1: flujo normal ===");
-        Pedido pizza = new Pedido("Lucila", "Pizza muzzarella");
+        Pedido pizza = new Pedido("Andrea", "Pizza muzzarella");
         pizza.mostrar();
         pizza.avanzar();   // Recibido -> En preparación
         pizza.avanzar();   // En preparación -> Listo
