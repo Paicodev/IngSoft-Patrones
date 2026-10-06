@@ -1,0 +1,43 @@
+@startuml
+
+title Patrón de Diseño Facade - Sistema de Compra de Películas
+
+class Cliente {
+    - nombre : String
+    + Cliente(nombre : String)
+    + comprarPelicula(titulo : String, precio : double) : void
+}
+
+class CompraFacade {
+    - inventario : Inventario
+    - pago : Pago
+    - envio : Envio
+    - notificacion : Notificacion
+    + CompraFacade()
+    + realizarCompra(titulo : String, precio : double) : void
+}
+
+class Inventario {
+    + verificarDisponibilidad(titulo : String) : boolean
+    + actualizarInventario(titulo : String) : void
+}
+
+class Pago {
+    + procesarPago(monto : double) : boolean
+}
+
+class Envio {
+    + prepararEnvio(titulo : String) : void
+}
+
+class Notificacion {
+    + enviarConfirmacion(titulo : String) : void
+}
+
+Cliente --> CompraFacade : utiliza
+CompraFacade --> Inventario : utiliza
+CompraFacade --> Pago : utiliza
+CompraFacade --> Envio : utiliza
+CompraFacade --> Notificacion : utiliza
+
+@enduml
