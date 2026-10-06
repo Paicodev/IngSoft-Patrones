@@ -1,5 +1,4 @@
 
-
 // Estado concreto 5 (final): el pedido fue cancelado
 public class EstadoCancelado implements EstadoPedido {
     @Override

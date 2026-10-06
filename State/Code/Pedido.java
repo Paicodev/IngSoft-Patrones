@@ -1,5 +1,5 @@
 
-// El Contexto (Context)
+// El Contexto 
 // Mantiene una referencia al estado actual y le delega el comportamiento.
 public class Pedido {
     private final String cliente;
@@ -9,7 +9,7 @@ public class Pedido {
     public Pedido(String cliente, String plato) {
         this.cliente = cliente;
         this.plato = plato;
-        this.estado = new EstadoRecibido(); // estado inicial
+        this.estado = new EstadoRecibido(); 
         System.out.println("Nuevo pedido de " + cliente + ": " + plato);
     }
 
