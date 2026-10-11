@@ -1,0 +1,23 @@
+@startuml
+skinparam classAttributeIconSize 0
+
+interface Imagen {
+    +mostrar() : void
+}
+
+class ImagenReal {
+    -archivo : String
+    +mostrar() : void
+}
+
+class ImagenProxy {
+    -archivo : String
+    -imagenReal : ImagenReal
+    +mostrar() : void
+}
+
+Imagen <|.. ImagenReal
+Imagen <|.. ImagenProxy
+ImagenProxy --> "0..1" ImagenReal : crea al primer uso
+
+@enduml
