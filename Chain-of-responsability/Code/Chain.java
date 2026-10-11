@@ -1,4 +1,4 @@
-public class Main {
+public class chain {
     public static void main(String[] args) {
         Empleado empleado = new Empleado();
         Supervisor supervisor = new Supervisor();
