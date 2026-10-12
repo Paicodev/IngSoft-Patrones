@@ -1,0 +1,31 @@
+
+@startuml
+class Main
+
+class Boton {
+    -comando: Command
+    +Boton(comando: Command)
+    +presionar(): void
+}
+
+interface Command {
+    +execute(): void
+}
+
+class EncenderLuzCommand {
+    -luz: Luz
+    +EncenderLuzCommand(luz: Luz)
+    +execute(): void
+}
+
+class Luz {
+    +encender(): void
+}
+
+EncenderLuzCommand ..|> Command
+Boton --> Command : ejecuta
+EncenderLuzCommand --> Luz : invoca
+Main ..> Boton : configura
+Main ..> EncenderLuzCommand : crea
+
+@enduml
