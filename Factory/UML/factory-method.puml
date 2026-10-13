@@ -1,0 +1,65 @@
+@startuml FactoryMethodNotificaciones
+skinparam classAttributeIconSize 0
+
+interface Notification {
+    +send(message: String): void
+}
+
+class EmailNotification {
+    +send(message: String): void
+}
+
+class SmsNotification {
+    +send(message: String): void
+}
+
+class WhatsAppNotification {
+    +send(message: String): void
+}
+
+class PushNotification {
+    +send(message: String): void
+}
+
+Notification <|.. EmailNotification
+Notification <|.. SmsNotification
+Notification <|.. WhatsAppNotification
+Notification <|.. PushNotification
+
+abstract class NotificationCreator {
+    {abstract} +createNotification(): Notification
+    +notify(message: String): void
+}
+
+class EmailCreator {
+    +createNotification(): Notification
+}
+
+class SmsCreator {
+    +createNotification(): Notification
+}
+
+class WhatsAppCreator {
+    +createNotification(): Notification
+}
+
+class PushCreator {
+    +createNotification(): Notification
+}
+
+NotificationCreator <|-- EmailCreator
+NotificationCreator <|-- SmsCreator
+NotificationCreator <|-- WhatsAppCreator
+NotificationCreator <|-- PushCreator
+
+NotificationCreator ..> Notification : uses
+EmailCreator ..> EmailNotification : creates
+SmsCreator ..> SmsNotification : creates
+WhatsAppCreator ..> WhatsAppNotification : creates
+PushCreator ..> PushNotification : creates
+
+class Main {
+    +main(args: String[]): void
+}
+Main ..> NotificationCreator : uses
+@enduml
