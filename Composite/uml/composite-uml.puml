@@ -1,0 +1,35 @@
+@startuml
+
+skinparam classAttributeIconSize 0
+
+interface ServicioGimnasio {
+    + getPrecio() : double
+    + mostrarDetalle() : void
+}
+
+class ClaseIndividual {
+    - nombre : String
+    - precioBase : double
+    + ClaseIndividual(nombre: String, precioBase: double)
+    + getPrecio() : double
+    + mostrarDetalle() : void
+}
+
+class PaqueteMensual {
+    - nombre : String
+    - porcentajeDescuento : double
+    - servicios : List<ServicioGimnasio>
+    + PaqueteMensual(nombre: String, porcentajeDescuento: double)
+    + agregarServicio(s: ServicioGimnasio) : void
+    + getPrecio() : double
+    + mostrarDetalle() : void
+}
+
+' Relaciones de Realización (Implementación de la Interfaz)
+ServicioGimnasio <|.. ClaseIndividual
+ServicioGimnasio <|.. PaqueteMensual
+
+' Relación de Agregación (El paquete contiene una lista de servicios)
+PaqueteMensual o-- ServicioGimnasio : contiene >
+
+@enduml
