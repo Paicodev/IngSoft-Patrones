@@ -1,0 +1,28 @@
+@startuml
+
+title Template Method - Preparación de bebidas
+
+abstract class PreparacionBebida {
+    + prepararBebida() : void
+    # hervirAgua() : void
+    {abstract} # agregarIngrediente() : void
+    # servir() : void
+}
+
+class Te {
+    # agregarIngrediente() : void
+}
+
+class Cafe {
+    # agregarIngrediente() : void
+}
+
+PreparacionBebida <|-- Te
+PreparacionBebida <|-- Cafe
+
+note right of PreparacionBebida
+  prepararBebida() define
+  el orden de los pasos.
+end note
+
+@enduml
