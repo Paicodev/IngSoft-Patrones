@@ -1,0 +1,85 @@
+@startuml bridge
+skinparam classAttributeIconSize 0
+
+package "remotes (Abstracción)" {
+    interface Remote {
+        +alternarEncendido(): void
+        +bajarVolumen(): void
+        +subirVolumen(): void
+        +bajarCanal(): void
+        +subirCanal(): void
+    }
+
+    class BasicRemote {
+        #dispositivo: Device
+        +BasicRemote()
+        +BasicRemote(dispositivo: Device)
+        +alternarEncendido(): void
+        +bajarVolumen(): void
+        +subirVolumen(): void
+        +bajarCanal(): void
+        +subirCanal(): void
+    }
+
+    class AdvancedRemote {
+        +AdvancedRemote(dispositivo: Device)
+        +silenciar(): void
+    }
+}
+
+package "devices (Implementación)" {
+    interface Device {
+        +estaHabilitado(): boolean
+        +habilitar(): void
+        +deshabilitar(): void
+        +getVolumen(): int
+        +setVolumen(porcentaje: int): void
+        +getCanal(): int
+        +setCanal(canal: int): void
+        +imprimirEstado(): void
+    }
+
+    class Tv {
+        -encendido: boolean
+        -volumen: int
+        -canal: int
+        +estaHabilitado(): boolean
+        +habilitar(): void
+        +deshabilitar(): void
+        +getVolumen(): int
+        +setVolumen(volumen: int): void
+        +getCanal(): int
+        +setCanal(canal: int): void
+        +imprimirEstado(): void
+    }
+
+    class Radio {
+        -encendido: boolean
+        -volumen: int
+        -canal: int
+        +estaHabilitado(): boolean
+        +habilitar(): void
+        +deshabilitar(): void
+        +getVolumen(): int
+        +setVolumen(volumen: int): void
+        +getCanal(): int
+        +setCanal(canal: int): void
+        +imprimirEstado(): void
+    }
+}
+
+class Demo {
+    +{static} main(args: String[]): void
+    +{static} probarDispositivo(dispositivo: Device): void
+}
+
+Remote <|.. BasicRemote
+BasicRemote <|-- AdvancedRemote
+BasicRemote o--> "1" Device : "puente\n(dispositivo)"
+Device <|.. Tv
+Device <|.. Radio
+
+Demo ..> Remote : usa
+Demo ..> Device : usa
+
+@enduml
