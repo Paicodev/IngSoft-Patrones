@@ -1,0 +1,24 @@
+
+@startuml
+class Main
+
+interface Notificador {
+    +enviar(mensaje: String): void
+}
+
+class EmailSender {
+    +enviar(mensaje: String): void
+}
+
+class NotificacionService {
+    -notificador: Notificador
+    +NotificacionService(n: Notificador)
+    +notificar(mensaje: String): void
+}
+
+EmailSender ..|> Notificador
+NotificacionService --> "1" Notificador : recibe por constructor
+Main ..> NotificacionService : crea y configura
+Main ..> EmailSender : instancia
+
+@enduml

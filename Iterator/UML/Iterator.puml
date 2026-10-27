@@ -1,0 +1,37 @@
+
+@startuml
+class Main
+
+interface Iterator {
+    +hasNext(): boolean
+    +next(): Object
+}
+
+interface IterableCollection {
+    +createIterator(): Iterator
+}
+
+class ConcreteIterator {
+    -collection: ConcreteCollection
+    -position: int
+    +hasNext(): boolean
+    +next(): Object
+}
+
+class ConcreteCollection {
+    -elements: Object[]
+    +createIterator(): Iterator
+    +getElement(index: int): Object
+    +size(): int
+}
+
+ConcreteIterator ..|> Iterator
+ConcreteCollection ..|> IterableCollection
+
+ConcreteIterator --> ConcreteCollection : recorre
+ConcreteCollection ..> ConcreteIterator : crea
+
+Main ..> IterableCollection : solicita iterador
+Main ..> Iterator : recorre elementos
+
+@enduml
